@@ -29,6 +29,9 @@ const taskSchema = new mongoose.Schema({
   reminderSent: {
     type: Boolean,
     default: false
+  },
+  completedAt: {
+    type: Date
   }
 }, { timestamps: true });
 

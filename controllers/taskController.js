@@ -42,12 +42,29 @@ export const updateTask = async (req, res) => {
       _id: req.params.id,
       user: req.user._id
     });
+
     if (!task) {
       return res.status(404).json({ message: "Task not found" });
     }
-    Object.assign(task, req.body);
+
+    if (req.body.status) {
+      task.status = req.body.status;
+
+      if (req.body.status === "Completed") {
+        task.completedAt = new Date();
+      } else {
+        task.completedAt = null;
+      }
+    }
+
+    if (req.body.title) task.title = req.body.title;
+    if (req.body.deadline) task.deadline = req.body.deadline;
+    if (req.body.priority) task.priority = req.body.priority;
+
     const updatedTask = await task.save();
+
     res.json(updatedTask);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
