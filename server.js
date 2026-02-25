@@ -9,14 +9,12 @@ import mongoose from "mongoose";
 
 
 const app = express();
-
 // Middleware
-app.use(cors());
-    // Enable CORS with environment-based origin restriction
-    app.use(cors({
-      origin: process.env.CLIENT_URL,
-      credentials: true
-    }));
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Auth routes
