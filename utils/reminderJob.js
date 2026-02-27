@@ -5,7 +5,7 @@ import sendEmail from "./sendEmail.js";
 
 const startReminderJob = () => {
   // Runs every hour at minute 0
-  cron.schedule("0 * * * *", async () => {
+  cron.schedule("* * * * *", async () => {
     console.log("Running reminder job...");
     const now = new Date();
     const nextHour = new Date(now.getTime() + 60 * 60 * 1000);
